@@ -1,0 +1,14 @@
+{
+  "name": "full-stack-web-app",
+  "version": "1.0.0",
+  "description": "video web app built on nodejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rohit Kumawat",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
