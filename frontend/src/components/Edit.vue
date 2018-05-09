@@ -48,7 +48,7 @@ export default {
             this.title = res.data.title;
             this.description = res.data.description;
         })
-    },
+    },  
     methods: {
         updateData() {
             const formData = {
