@@ -1,10 +1,5 @@
 <template>
     <div>
-        <div class="container-flulid">
-            <div class="row" style="height: 20px">
-
-            </div>
-        </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-6 col-lg-3" v-for="post in posts" :key="post._id">    
@@ -61,7 +56,8 @@ export default {
 .col-lg-3 {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    height: auto;
+    height: 140px;
+    margin-top: 50px;
 }
 
 .col-lg-3:hover {
