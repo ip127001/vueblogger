@@ -7,10 +7,6 @@ import { routes } from './routes.js'
 
 Vue.use(VueRouter);
 
-axios.defaults.baseURL = 'http://localhost:8081'
-axios.defaults.headers.common['Authorization'] = 'fasfdsa'
-axios.defaults.headers.get['Accepts'] = 'application/json'
-
 const router = new VueRouter({
   mode: 'history',
   routes

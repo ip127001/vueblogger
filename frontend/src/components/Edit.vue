@@ -5,7 +5,7 @@
                 <div class="col-md-6 col-md-offset-3 center">
                     <div class="container">
                         <h2>Add Post</h2>
-                        <form @submit.prevent="postData">
+                        <form @submit.prevent="updateData">
                             <div class="form-group">
                                 <label for="title">Title:</label>
                                 <input type="title" class="form-control"
@@ -21,7 +21,7 @@
                                                     rows="5" 
                                                     v-model="description"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button type="submit" class="btn btn-info">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -30,29 +30,41 @@
     </div>
 </template>
 
+
 <script>
 import axios from '../axios-auth';
 
 export default {
     data() {
         return {
-            add: 'add',
+            id: this.$route.params.id,
             title: '',
             description: ''
         }
     },
+    created() {
+        axios.get(`/posts/edit/${this.id}`)
+        .then(res => {
+            this.title = res.data.title;
+            this.description = res.data.description;
+        })
+    },
     methods: {
-        postData() {
+        updateData() {
             const formData = {
                 title: this.title,
                 description: this.description
             }
-            console.log('form',formData)
-            axios.post(`/posts/${this.add}`, formData)
-                .then(res => console.log(res))
-                .catch(error => console.log(error))
-            this.$router.push('/posts')
+            axios.put(`/posts/add/${this.id}`, formData)
+            .then(data => {
+               console.log("ok")
+            })
+            this.$router.push({ name: 'posts'})
         }
     }
 }
 </script>
+
+<style scoped>
+
+</style>
