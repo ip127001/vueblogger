@@ -6,6 +6,6 @@ import Add from './components/Add.vue'
 export const routes = [
     { path: '/', component: Home},
     { path: '/about', component: About},
-    { path: '/posts', component: Posts},
+    { path: '/posts', component: Posts, name: 'posts'},
     { path: '/posts/add', component: Add}
 ]

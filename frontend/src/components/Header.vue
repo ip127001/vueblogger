@@ -13,10 +13,10 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <router-link to="/" activeclass="active" tag="li"><a>Home</a></router-link>
-                <router-link to="/about" activeclass="active" tag="li"><a>About</a></router-link>
-                <router-link to="/posts" activeclass="active" tag="li"><a>Show Posts</a></router-link>
-                <router-link to="/posts/add" activeclass="active" tag="li"><a>Add Posts</a></router-link>
+                <router-link to="/" tag="li"><a>Home</a></router-link>
+                <router-link to="/about" tag="li"><a>About</a></router-link>
+                <router-link to="/posts" tag="li"><a>Show Posts</a></router-link>
+                <router-link to="/posts/add" tag="li"><a>Add Posts</a></router-link>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Signup</a></li>
