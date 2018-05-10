@@ -19,8 +19,8 @@
                 <router-link to="/posts/add" tag="li" active-class="active" exact><a>Add Posts</a></router-link>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Signup</a></li>
-                <li><a href="#">Login</a></li>
+                <router-link to="/signup" tag="li" active-class="active" exact><a>Signup</a></router-link>
+                <router-link to="/login" tag="li" active-class="active" exact><a>Login</a></router-link>
             </ul>
         </div>
     </div>
