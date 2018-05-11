@@ -43,8 +43,7 @@
                 email: '',
                 age: null,
                 password: '',
-                confirmPassword: '',
-                year: '1st'
+                confirmPassword: ''
             }
         },
         validations: {
