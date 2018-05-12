@@ -43,6 +43,7 @@ export default {
     },
     methods: {
         postData() {
+            axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
             const formData = {
                 title: this.title,
                 description: this.description

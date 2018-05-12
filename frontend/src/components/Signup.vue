@@ -11,20 +11,14 @@
                         <p v-if="!$v.email.required">This field is required</p>
                     </div>
 
-                    <div class="form-group" :class="{invalid: $v.age.$error}">
-                        <label for="age">Age:</label>
-                        <input type="number" class="form-control" id="age" placeholder="enter your age" name="age" @blur="$v.age.$touch()" v-model="age">
-                        <p v-if="!$v.age.minVal">You have to be atleast {{ $v.age.$params.minVal.min }} years old</p>
-                    </div>
-
                     <div class="form-group" :class="{invalid: $v.password.$error}">
                         <label for="pwd">Password:</label>
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" @blur="$v.password.$touch()" v-model="password">
                     </div>
     
                     <div class="form-group" :class="{invalid: $v.confirmPassword.$error}">
-                        <label for="pwd">Confirm Password:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="Confirm password" name="pwd" @blur="$v.confirmPassword.$touch()" v-model="confirmPassword">
+                        <label for="pwd1">Confirm Password:</label>
+                        <input type="password" class="form-control" id="pwd1" placeholder="Confirm password" name="pwd" @blur="$v.confirmPassword.$touch()" v-model="confirmPassword">
                         <p v-if="$v.confirmPassword.$error">Password doesn't match</p>
                     </div>
 
@@ -36,14 +30,16 @@
 </template>
 
 <script>
-    import { required, email, numeric, minValue, minLength, sameAs } from 'vuelidate/lib/validators'
+    import { required, email, minValue, minLength, sameAs } from 'vuelidate/lib/validators'
+    import axios from '../axios-auth.js'
+
     export default {
         data() {
             return {
                 email: '',
-                age: null,
                 password: '',
-                confirmPassword: ''
+                confirmPassword: '',
+                message: ''
             }
         },
         validations: {
@@ -51,20 +47,31 @@
                 required,
                 email
             },
-            age: {
-                required,
-                numeric,
-                minVal: minValue(18)
-            },
             password: {
                 required,
                 minLen: minLength(6)
             },
             confirmPassword: {
-                //sameAs: sameAs('password')
                 sameAs: sameAs(vm => {
                     return vm.password
                 })
+            }
+        },
+        methods: {
+            onSubmit() {
+                const formData = {
+                    email: this.email,
+                    password: this.password
+                }
+                axios.post('/auth/register', formData)
+                .then(res => {
+                    if(res.data.success) {
+                        this.$router.push('/login')
+                    } else {
+                        console.log(res.data)
+                    }
+                })
+                .catch(error => console.log(error))
             }
         }
     }
