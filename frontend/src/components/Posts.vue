@@ -27,18 +27,14 @@ export default {
         }
     },
     created() {
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('jwtToken')
         axios.get('/posts')
         .then(res => {
             this.posts = res.data
         })
-        .catch(error => console.log(error))
-    },
-    updated() {
-        axios.get('/posts')
-        .then(res => {
-            this.posts = res.data
+        .catch(error => {
+            this.$router.push('/login')
         })
-        .catch(error => console.log(error))
     },
     methods: {
         deletePost(id) {
