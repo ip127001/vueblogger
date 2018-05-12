@@ -13,12 +13,16 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use(cors());
 
+const db = require('./config/database');
+
+mongoose.Promise = global.Promise;
+
 //connect to mongoose
-mongoose.connect('mongodb://localhost/posts')
+mongoose.connect(db.mongoURI)
 .then(() => console.log('mongodb connected'))
 .catch((error) => console.log(error));
 
-const port = 8081;
+const port = process.env.PORT || 8081;
 
 app.use('', posts);
 app.use('/auth', users);
